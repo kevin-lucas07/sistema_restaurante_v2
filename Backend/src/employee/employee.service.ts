@@ -7,30 +7,29 @@ import { Employee } from './entities/employee.entity';
 
 @Injectable()
 export class EmployeeService {
-
   constructor(
-     @InjectRepository(Employee)
-      private readonly employeeRepository: Repository<Employee>
-    ){}
-// Hola
+    @InjectRepository(Employee)
+    private readonly employeeRepository: Repository<Employee>,
+  ) {}
 
-  create(createEmployeeDto: CreateEmployeeDto) {
-    return 'This action adds a new employee';
+  async create(createEmployeeDto: CreateEmployeeDto) {
+    const employee = this.employeeRepository.create(createEmployeeDto);
+    return await this.employeeRepository.save(employee);
   }
 
   async findAll() {
     return await this.employeeRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} employee`;
+  async findOne(id: number) {
+    return await this.employeeRepository.findOneBy({id});
   }
 
-  update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
-    return `This action updates a #${id} employee`;
+  async update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
+    return await this.employeeRepository.update(id, updateEmployeeDto)
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} employee`;
+  async remove(id: number) {
+    return await this.employeeRepository.softDelete({id});
   }
 }
