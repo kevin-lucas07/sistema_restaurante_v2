@@ -13,8 +13,9 @@ export class EmployeeService {
   ) {}
 
   async create(createEmployeeDto: CreateEmployeeDto) {
-    const employee = this.employeeRepository.create(createEmployeeDto);
-    return await this.employeeRepository.save(employee);
+    // const employee = this.employeeRepository.create(createEmployeeDto);
+    // return await this.employeeRepository.save(employee);
+    return
   }
 
   async findAll() {
@@ -26,7 +27,8 @@ export class EmployeeService {
   }
 
   async update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
-    return await this.employeeRepository.update(id, updateEmployeeDto)
+    // return await this.employeeRepository.update(id, updateEmployeeDto)
+    return
   }
 
   async remove(id: number) {

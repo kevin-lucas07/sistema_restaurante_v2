@@ -1,32 +1,23 @@
-import { Order } from 'src/order/entities/order.entity';
+import { Employee } from 'src/employee/entities/employee.entity';
 import {
   Column,
-  Entity,
   CreateDateColumn,
-  UpdateDateColumn,
   DeleteDateColumn,
-  OneToMany,
+  Entity,
+  ManyToOne,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
-export class Employee {
+export class Order {
   @Column({ primary: true, generated: true })
   id: number;
 
   @Column()
-  nombre: string;
+  estado_pago: boolean;
 
-  @Column()
-  apellido: string;
-
-  @Column()
-  usuario: string;
-
-  @Column()
-  correo: string;
-
-  @Column()
-  contrasenia: string;
+  @Column('decimal', { precision: 10, scale: 2 })
+  precio_final: number;
 
   @CreateDateColumn({ type: 'timestamptz' }) // Guarda la fecha y hora de creación
   created_at: Date;
@@ -34,9 +25,13 @@ export class Employee {
   @UpdateDateColumn({ type: 'timestamptz' }) // Guarda la fecha y hora de la última actualización
   updated_at: Date;
 
-  @DeleteDateColumn({ type: 'timestamptz' })
+  @DeleteDateColumn({ type: 'timestamptz' }) // Eliminacion virtual
   delete_at: Date;
 
-  @OneToMany(() => Order, (order) => order.employee)
-  orders: Order[];
+  @ManyToOne(() => Employee, (employee) => employee.id,{
+    eager: true,
+  })
+  employee: Employee;
+
+
 }
