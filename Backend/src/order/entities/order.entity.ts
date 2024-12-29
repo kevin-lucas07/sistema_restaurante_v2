@@ -4,6 +4,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   UpdateDateColumn,
 } from 'typeorm';
@@ -31,6 +32,7 @@ export class Order {
   @ManyToOne(() => Employee, (employee) => employee.id,{
     eager: true,
   })
+  @JoinColumn({name: 'employee_id'})
   employee: Employee;
 
 

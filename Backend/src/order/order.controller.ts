@@ -8,8 +8,9 @@ export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @Post()
-  create(@Body() createOrderDto: CreateOrderDto) {
-    return this.orderService.create(createOrderDto);
+  async create(@Body() createOrderDto: CreateOrderDto) {
+    createOrderDto.precio_final = parseFloat(createOrderDto.precio_final.toFixed(2));
+    return await this.orderService.create(createOrderDto);
   }
 
   @Get()

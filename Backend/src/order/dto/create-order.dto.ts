@@ -1,4 +1,4 @@
-import { IsBoolean, IsDecimal, IsNumber, IsOptional } from "class-validator";
+import { IsBoolean, IsDecimal, IsNumber, IsOptional, Matches, Min } from "class-validator";
 import { Decimal128 } from "typeorm";
 
 export class CreateOrderDto {
@@ -6,8 +6,8 @@ export class CreateOrderDto {
     @IsBoolean()
     estado_pago: boolean;
 
-    @IsNumber()
-    @IsOptional()
+    @IsNumber({},{message: 'El precio debe ser un numero válido'})
+    @Min(0, { message: 'El precio no puede ser negativo' })
     precio_final: number;
 
 
