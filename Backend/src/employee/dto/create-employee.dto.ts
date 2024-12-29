@@ -1,4 +1,4 @@
-import { IsOptional, IsString, MinLength } from 'class-validator';
+import { IsString } from 'class-validator';
 
 export class CreateEmployeeDto {
   @IsString()
