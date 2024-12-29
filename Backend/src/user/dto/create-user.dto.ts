@@ -1,6 +1,6 @@
 import { IsString } from 'class-validator';
 
-export class CreateEmployeeDto {
+export class CreateUserDto {
   @IsString()
   // @MinLength(1)
   nombre: string;

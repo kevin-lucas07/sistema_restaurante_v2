@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { EmployeeModule } from './employee/employee.module';
+import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrderModule } from './order/order.module';
 
@@ -15,7 +15,7 @@ import { OrderModule } from './order/order.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    EmployeeModule,
+    UserModule,
     OrderModule,
   ],
   controllers: [],

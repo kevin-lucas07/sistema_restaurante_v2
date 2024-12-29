@@ -1,6 +1,22 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateOrderDto } from './create-order.dto';
+import {
+  IsBoolean,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Min,
+} from 'class-validator';
 
 export class UpdateOrderDto {
-    
+  @IsBoolean()
+  @IsOptional()
+  estado_pago: boolean;
+
+  @IsNumber({}, { message: 'El precio debe ser un numero válido' })
+  @Min(0, { message: 'El precio no puede ser negativo' })
+  @IsOptional()
+  precio_final: number;
+
+  @IsString()
+  @IsOptional()
+  user?: string;
 }

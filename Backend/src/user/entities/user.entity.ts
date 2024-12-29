@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Employee {
+export class User {
   @Column({ primary: true, generated: true })
   id: number;
 
@@ -37,6 +37,6 @@ export class Employee {
   @DeleteDateColumn({ type: 'timestamptz' })
   delete_at: Date;
 
-  @OneToMany(() => Order, (order) => order.employee)
+  @OneToMany(() => Order, (order) => order.user)
   orders: Order[];
 }
