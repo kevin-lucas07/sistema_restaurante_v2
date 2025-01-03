@@ -1,4 +1,4 @@
-import { Order } from 'src/order/entities/order.entity';
+import { Order } from 'src/orders/entities/order.entity';
 import {
   Column,
   Entity,
@@ -37,6 +37,6 @@ export class User {
   @DeleteDateColumn({ type: 'timestamptz' })
   delete_at: Date;
 
-  @OneToMany(() => Order, (order) => order.user)
+  @OneToMany(() => Order, (orders) => orders.users)
   orders: Order[];
 }

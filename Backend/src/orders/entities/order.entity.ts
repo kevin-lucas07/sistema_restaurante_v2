@@ -1,4 +1,4 @@
-import { User } from 'src/user/entities/user.entity';
+import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
@@ -29,9 +29,9 @@ export class Order {
   @DeleteDateColumn({ type: 'timestamptz' }) // Eliminacion virtual
   delete_at: Date;
 
-  @ManyToOne(() => User, (user) => user.id,{
+  @ManyToOne(() => User, (users) => users.id,{
     eager: true,
   })
   @JoinColumn({name: 'user_id'})
-  user: User;
+  users: User;
 }

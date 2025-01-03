@@ -13,8 +13,8 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const user = this.userRepository.create(createUserDto);
-    return await this.userRepository.save(user);
+    const users = this.userRepository.create(createUserDto);
+    return await this.userRepository.save(users);
   }
 
   async findAll() {

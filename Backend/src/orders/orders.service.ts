@@ -4,7 +4,7 @@ import { UpdateOrderDto } from './dto/update-order.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Order } from './entities/order.entity';
-import { User } from 'src/user/entities/user.entity';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class OrderService {
@@ -17,17 +17,17 @@ export class OrderService {
   ) {}
 
   async create(createOrderDto: CreateOrderDto) {
-    const user = await this.userRepository.findOneBy({
-      nombre: createOrderDto.user,
+    const users = await this.userRepository.findOneBy({
+      nombre: createOrderDto.users,
     });
 
-    if (!user) {
+    if (!users) {
       throw new BadRequestException('Empleado no encontrado');
     }
 
     return await this.orderRepository.save({
       ...createOrderDto,
-      user,
+      users,
     });
   }
 
@@ -45,6 +45,6 @@ export class OrderService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} order`;
+    return `This action removes a #${id} orders`;
   }
 }

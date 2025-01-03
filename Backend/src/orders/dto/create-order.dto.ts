@@ -6,17 +6,15 @@ import {
   Min,
 } from 'class-validator';
 
-export class UpdateOrderDto {
+export class CreateOrderDto {
   @IsBoolean()
-  @IsOptional()
   estado_pago: boolean;
 
   @IsNumber({}, { message: 'El precio debe ser un numero válido' })
   @Min(0, { message: 'El precio no puede ser negativo' })
-  @IsOptional()
   precio_final: number;
 
   @IsString()
   @IsOptional()
-  user?: string;
+  users?: string;
 }
