@@ -6,11 +6,12 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   OneToMany,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 
 @Entity()
 export class User {
-  @Column({ primary: true, generated: true })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
@@ -19,13 +20,13 @@ export class User {
   @Column()
   apellido: string;
 
-  @Column()
+  @Column({unique: true})
   usuario: string;
 
-  @Column()
+  @Column({unique: true})
   correo: string;
 
-  @Column()
+  @Column({nullable: false})
   contrasenia: string;
 
   @CreateDateColumn({ type: 'timestamptz' }) // Guarda la fecha y hora de creación
@@ -37,6 +38,6 @@ export class User {
   @DeleteDateColumn({ type: 'timestamptz' })
   delete_at: Date;
 
-  @OneToMany(() => Order, (orders) => orders.users)
-  orders: Order[];
+  @OneToMany(() => Order, (order) => order.user)
+  order: Order[];
 }

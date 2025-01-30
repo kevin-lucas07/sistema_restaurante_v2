@@ -1,16 +1,16 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { OrderService } from './orders.service';
+import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 
 @Controller('orders')
-export class OrderController {
-  constructor(private readonly orderService: OrderService) {}
+export class OrdersController {
+  constructor(private readonly orderService: OrdersService) {}
 
   @Post()
   async create(@Body() createOrderDto: CreateOrderDto) {
-    createOrderDto.precio_final = parseFloat(createOrderDto.precio_final.toFixed(2));
-    return await this.orderService.create(createOrderDto);
+    // createOrderDto.precio_final = parseFloat(createOrderDto.precio_final.toFixed(2));
+    return this.orderService.create(createOrderDto);
   }
 
   @Get()

@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 
 @Injectable()
-export class UserService {
+export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
@@ -15,6 +15,10 @@ export class UserService {
   async create(createUserDto: CreateUserDto) {
     const users = this.userRepository.create(createUserDto);
     return await this.userRepository.save(users);
+  }
+
+  findOneByEmail(correo: string){
+    return this.userRepository.findOneBy({correo})
   }
 
   async findAll() {

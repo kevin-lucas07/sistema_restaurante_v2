@@ -16,7 +16,8 @@ export class UpdateOrderDto {
   @IsOptional()
   precio_final: number;
 
-  @IsString()
-  @IsOptional()
-  users?: string;
+  // @IsNotEmpty({ message: 'El ID de usuario es obligatorio' })
+  @IsOptional() // Opcional solo si realmente lo permites en la lógica
+  @IsNumber({}, { message: 'El ID del usuario debe ser un número' })
+  user_id?: number; // Renombrado para mayor claridad
 }

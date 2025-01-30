@@ -6,12 +6,13 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
 export class Order {
-  @Column({ primary: true, generated: true })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
@@ -29,9 +30,10 @@ export class Order {
   @DeleteDateColumn({ type: 'timestamptz' }) // Eliminacion virtual
   delete_at: Date;
 
-  @ManyToOne(() => User, (users) => users.id,{
-    eager: true,
+  @ManyToOne(() => User, (user) => user.id,{
+    eager: true, // Cambia a false si no necesitas cargar siempre la relación
+    nullable: true, //Guardar con valores nulos
   })
   @JoinColumn({name: 'user_id'})
-  users: User;
+  user: User | null;
 }
